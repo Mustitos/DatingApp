@@ -74,7 +74,7 @@ namespace API.Data
                 .SingleOrDefaultAsync(x => x.Username == username);
         }
 
-        public async Task<bool> SallAllAsync()
+        public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }

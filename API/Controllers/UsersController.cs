@@ -70,7 +70,7 @@ namespace API.Controllers
 
             _userRepository.Update(user);
 
-            if (await _userRepository.SallAllAsync()) return NoContent();
+            if (await _userRepository.SaveAllAsync()) return NoContent();
 
             return BadRequest("Failed to update user");
         }
@@ -97,7 +97,7 @@ namespace API.Controllers
 
             user.Photos.Add(photo);
 
-            if (await _userRepository.SallAllAsync())
+            if (await _userRepository.SaveAllAsync())
             {
                 return CreatedAtRoute("GetUser",new {username = user.Username } ,_mapper.Map<PhotoDto>(photo));
            
@@ -124,7 +124,7 @@ namespace API.Controllers
             if (currentMain != null) currentMain.IsMain = false;
             photo.IsMain = true;
 
-            if (await _userRepository.SallAllAsync())  return NoContent();
+            if (await _userRepository.SaveAllAsync())  return NoContent();
 
             return BadRequest("Failed to set main photo");
             
@@ -151,7 +151,7 @@ namespace API.Controllers
 
              user.Photos.Remove(photo);
 
-             if (await _userRepository.SallAllAsync()) return Ok();
+             if (await _userRepository.SaveAllAsync()) return Ok();
 
              return BadRequest("Failed to delete the photo");
 
